@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/#home}">
+            <span class="brand-badge">VP</span>
+            <span>Vikash Pandey</span>
+        </a>
+
+        <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="bi bi-list fs-2 text-white"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/#home}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#about}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#skills}">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#projects}">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#education}">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/#resume}">Resume</a>
+                </li>
+                <li class="nav-item ms-lg-2">
+                    <a class="btn btn-sm btn-primary-gradient" th:href="@{/#hire-me}">
+                        <i class="bi bi-briefcase-fill me-1"></i> Hire Me
+                    </a>
+                </li>
+
+                <!-- Admin Session Controls -->
+                <li class="nav-item ms-lg-3" sec:authorize="isAuthenticated()">
+                    <a class="btn btn-sm btn-outline-custom" th:href="@{/admin/dashboard}">
+                        <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item ms-lg-1" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/admin/logout}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                            <i class="bi bi-box-arrow-right"></i>
+                        </button>
+                    </form>
+                </li>
+                <li class="nav-item ms-lg-2" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link text-muted" th:href="@{/admin/login}" title="Admin Portal">
+                        <i class="bi bi-shield-lock"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

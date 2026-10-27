@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head :: head('Admin Dashboard - Hiring Inquiries')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Top Admin Navigation -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" th:href="@{/admin/dashboard}">
+            <span class="brand-badge">VP</span>
+            <span>Admin <span class="gradient-text">Portal</span></span>
+        </a>
+
+        <div class="d-flex align-items-center gap-3">
+            <a th:href="@{/}" target="_blank" class="btn btn-sm btn-outline-custom">
+                <i class="bi bi-box-arrow-up-right me-1"></i> View Live Site
+            </a>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary dropdown-toggle text-light" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle me-1"></i> <span sec:authentication="name">admin</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary">
+                    <li>
+                        <form th:action="@{/admin/logout}" method="post">
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="bi bi-box-arrow-right me-2"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="container-fluid px-4 py-4 flex-grow-1">
+
+    <!-- Flash Success Message -->
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span th:text="${successMessage}">Operation completed successfully.</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Page Title & Overview -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="h3 text-white mb-1">Hiring Inquiries Management</h1>
+            <p class="text-secondary small mb-0">Monitor recruiter inquiries, track candidate pipelines, and review client leads.</p>
+        </div>
+    </div>
+
+    <!-- KPI Statistics Grid -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="text-muted fw-bold text-uppercase">Total</small>
+                    <i class="bi bi-inbox text-info"></i>
+                </div>
+                <div class="stat-value" th:text="${stats.total}">0</div>
+                <small class="text-secondary">All Inquiries</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card" style="border-left: 3px solid #00d2ff;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="text-info fw-bold text-uppercase">New</small>
+                    <i class="bi bi-bell text-info"></i>
+                </div>
+                <div class="stat-value text-info" th:text="${stats.newInquiries}">0</div>
+                <small class="text-secondary">Unread</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card" style="border-left: 3px solid #c084fc;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="text-purple fw-bold text-uppercase" style="color: #c084fc;">Reviewed</small>
+                    <i class="bi bi-eye text-purple"></i>
+                </div>
+                <div class="stat-value" style="color: #c084fc;" th:text="${stats.reviewed}">0</div>
+                <small class="text-secondary">Examined</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card" style="border-left: 3px solid #fbbf24;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="text-warning fw-bold text-uppercase">Contacted</small>
+                    <i class="bi bi-telephone text-warning"></i>
+                </div>
+                <div class="stat-value text-warning" th:text="${stats.contacted}">0</div>
+                <small class="text-secondary">In Discussion</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card" style="border-left: 3px solid #34d399;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="text-success fw-bold text-uppercase">Shortlisted</small>
+                    <i class="bi bi-star text-success"></i>
+                </div>
+                <div class="stat-value text-success" th:text="${stats.shortlisted}">0</div>
+                <small class="text-secondary">Promising</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+            <div class="stat-card" style="border-left: 3px solid #94a3b8;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <small class="text-muted fw-bold text-uppercase">Closed</small>
+                    <i class="bi bi-archive text-muted"></i>
+                </div>
+                <div class="stat-value text-muted" th:text="${stats.closed}">0</div>
+                <small class="text-secondary">Completed</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="glass-panel p-3 mb-4">
+        <form th:action="@{/admin/dashboard}" method="get" class="row g-2 align-items-end">
+            <!-- Search Query -->
+            <div class="col-md-3">
+                <label class="form-label small mb-1">Search Keywords</label>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-dark border-secondary text-secondary"><i class="bi bi-search"></i></span>
+                    <input type="text" name="search" th:value="${searchQuery}" class="form-control form-control-custom form-control-sm"
+                           placeholder="Search name, company, email, role...">
+                </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="col-md-2">
+                <label class="form-label small mb-1">Status</label>
+                <select name="status" class="form-select form-select-custom form-select-sm">
+                    <option value="">All Statuses</option>
+                    <option th:each="st : ${allStatuses}"
+                            th:value="${st}"
+                            th:text="${st.displayName}"
+                            th:selected="${selectedStatus == st}">Status</option>
+                </select>
+            </div>
+
+            <!-- Hiring Type Filter -->
+            <div class="col-md-2">
+                <label class="form-label small mb-1">Hiring Type</label>
+                <select name="hiringType" class="form-select form-select-custom form-select-sm">
+                    <option value="">All Types</option>
+                    <option th:each="ht : ${allHiringTypes}"
+                            th:value="${ht}"
+                            th:text="${ht.displayName}"
+                            th:selected="${selectedHiringType == ht}">Type</option>
+                </select>
+            </div>
+
+            <!-- Start Date -->
+            <div class="col-md-2">
+                <label class="form-label small mb-1">From Date</label>
+                <input type="date" name="startDate" th:value="${selectedStartDate}" class="form-control form-control-custom form-control-sm">
+            </div>
+
+            <!-- End Date -->
+            <div class="col-md-2">
+                <label class="form-label small mb-1">To Date</label>
+                <input type="date" name="endDate" th:value="${selectedEndDate}" class="form-control form-control-custom form-control-sm">
+            </div>
+
+            <!-- Submit & Reset Buttons -->
+            <div class="col-md-1 d-flex gap-1">
+                <button type="submit" class="btn btn-sm btn-primary-gradient w-100" title="Apply Filters">
+                    <i class="bi bi-filter"></i>
+                </button>
+                <a th:href="@{/admin/dashboard}" class="btn btn-sm btn-outline-secondary" title="Clear Filters">
+                    <i class="bi bi-arrow-counterclockwise"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Inquiries Data Table -->
+    <div class="glass-panel p-3">
+        <div class="table-responsive">
+            <table class="table table-custom table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">#ID</th>
+                        <th>Recruiter / Company</th>
+                        <th>Work Email</th>
+                        <th>Engagement</th>
+                        <th>Target Role</th>
+                        <th>Submitted On</th>
+                        <th>Status</th>
+                        <th class="text-end" style="min-width: 130px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${inquiries.empty}">
+                        <td colspan="8" class="text-center py-5 text-muted">
+                            <i class="bi bi-folder2-open display-6 d-block mb-2 text-secondary opacity-50"></i>
+                            No hiring inquiries match the current search or filter criteria.
+                        </td>
+                    </tr>
+                    <tr th:each="inq : ${inquiries}">
+                        <td>
+                            <span class="text-white fw-bold" th:text="'#' + ${inq.id}">#1</span>
+                        </td>
+                        <td>
+                            <div class="fw-semibold text-white" th:text="${inq.fullName}">Recruiter Name</div>
+                            <small class="text-muted" th:text="${inq.companyName}">Company Name</small>
+                        </td>
+                        <td>
+                            <a th:href="'mailto:' + ${inq.workEmail}" class="text-info text-decoration-none small" th:text="${inq.workEmail}">email@domain.com</a>
+                            <div th:if="${inq.contactNumber}" class="text-muted small" th:text="${inq.contactNumber}">Phone</div>
+                        </td>
+                        <td>
+                            <span class="badge bg-dark border border-secondary text-light small" th:text="${inq.hiringTypeDisplayName}">Full-Time</span>
+                        </td>
+                        <td>
+                            <span class="text-light small fw-medium" th:text="${inq.jobRole}">Java Backend Dev</span>
+                            <div th:if="${inq.salaryBudget}" class="text-muted small" th:text="'Budget: ' + ${inq.salaryBudget}">Budget</div>
+                        </td>
+                        <td>
+                            <small class="text-secondary" th:text="${#temporals.format(inq.createdAt, 'dd MMM yyyy, HH:mm')}">Date</small>
+                        </td>
+                        <td>
+                            <span th:class="'status-badge status-' + ${inq.status}" th:text="${inq.statusDisplayName}">NEW</span>
+                        </td>
+                        <td class="text-end">
+                            <div class="d-inline-flex gap-1">
+                                <!-- View Details -->
+                                <a th:href="@{/admin/inquiries/{id}(id=${inq.id})}" class="btn btn-sm btn-outline-custom" title="View Full Details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+                                <!-- Quick Status Change Form -->
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" title="Change Status">
+                                        <i class="bi bi-tag"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary">
+                                        <li th:each="st : ${allStatuses}">
+                                            <form th:action="@{/admin/inquiries/{id}/status(id=${inq.id})}" method="post">
+                                                <input type="hidden" name="status" th:value="${st}">
+                                                <button type="submit" class="dropdown-item text-light small d-flex justify-content-between align-items-center"
+                                                        th:classappend="${inq.status == st} ? 'active' : ''">
+                                                    <span th:text="${st.displayName}">Status</span>
+                                                    <i th:if="${inq.status == st}" class="bi bi-check2"></i>
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Delete Trigger -->
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                                        th:data-bs-target="'#deleteModal-' + ${inq.id}" title="Delete Inquiry">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+
+                            <!-- Delete Confirmation Modal -->
+                            <div class="modal fade" th:id="'deleteModal-' + ${inq.id}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content bg-dark text-light border-secondary">
+                                        <div class="modal-header border-secondary">
+                                            <h5 class="modal-title h6 text-danger">
+                                                <i class="bi bi-exclamation-triangle-fill me-1"></i> Confirm Deletion
+                                            </h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-start">
+                                            <p class="mb-2">Are you sure you want to delete hiring inquiry <strong th:text="'#' + ${inq.id}">#1</strong> from <strong th:text="${inq.companyName}">Company</strong>?</p>
+                                            <p class="small text-muted mb-0">This operation cannot be undone and will permanently remove the record from the database.</p>
+                                        </div>
+                                        <div class="modal-footer border-secondary">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <form th:action="@{/admin/inquiries/{id}/delete(id=${inq.id})}" method="post">
+                                                <button type="submit" class="btn btn-sm btn-danger">Permanently Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div th:if="${inquiriesPage.totalPages > 1}" class="d-flex flex-wrap justify-content-between align-items-center mt-3 pt-3 border-top border-secondary">
+            <small class="text-muted">
+                Showing <span th:text="${inquiriesPage.numberOfElements}">10</span> of <span th:text="${inquiriesPage.totalElements}">100</span> entries
+            </small>
+
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item" th:classappend="${inquiriesPage.first} ? 'disabled' : ''">
+                    <a class="page-link bg-dark border-secondary text-light"
+                       th:href="@{/admin/dashboard(page=${currentPage - 1}, size=${pageSize}, status=${selectedStatus}, hiringType=${selectedHiringType}, search=${searchQuery}, startDate=${selectedStartDate}, endDate=${selectedEndDate})}">
+                        &laquo; Prev
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, inquiriesPage.totalPages - 1)}"
+                    th:classappend="${currentPage == i} ? 'active' : ''">
+                    <a class="page-link bg-dark border-secondary text-light"
+                       th:href="@{/admin/dashboard(page=${i}, size=${pageSize}, status=${selectedStatus}, hiringType=${selectedHiringType}, search=${searchQuery}, startDate=${selectedStartDate}, endDate=${selectedEndDate})}"
+                       th:text="${i + 1}">1</a>
+                </li>
+
+                <li class="page-item" th:classappend="${inquiriesPage.last} ? 'disabled' : ''">
+                    <a class="page-link bg-dark border-secondary text-light"
+                       th:href="@{/admin/dashboard(page=${currentPage + 1}, size=${pageSize}, status=${selectedStatus}, hiringType=${selectedHiringType}, search=${searchQuery}, startDate=${selectedStartDate}, endDate=${selectedEndDate})}">
+                        Next &raquo;
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="mt-auto py-3 bg-dark bg-opacity-75 border-top border-secondary text-center">
+    <small class="text-muted">&copy; <span th:text="${#temporals.year(#temporals.createNow())}">2026</span> Vikash Pandey Portfolio Admin Panel</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

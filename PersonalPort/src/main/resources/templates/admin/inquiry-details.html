@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head :: head('Inquiry Details - Admin')}"></head>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" th:href="@{/admin/dashboard}">
+            <span class="brand-badge">VP</span>
+            <span>Admin <span class="gradient-text">Portal</span></span>
+        </a>
+        <div class="d-flex align-items-center gap-2">
+            <a th:href="@{/admin/dashboard}" class="btn btn-sm btn-outline-custom">
+                <i class="bi bi-arrow-left me-1"></i> Back to Inquiries
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="container py-4 flex-grow-1">
+
+    <!-- Flash message -->
+    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>
+        <span th:text="${successMessage}">Status updated</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Header bar -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <h1 class="h3 text-white mb-0" th:text="'Inquiry #' + ${inquiry.id}">Inquiry #1</h1>
+                <span th:class="'status-badge status-' + ${inquiry.status}" th:text="${inquiry.statusDisplayName}">NEW</span>
+            </div>
+            <p class="text-secondary small mb-0">
+                Submitted by <span class="text-white fw-semibold" th:text="${inquiry.fullName}">John</span> from
+                <span class="text-info fw-semibold" th:text="${inquiry.companyName}">Acme</span> on
+                <span th:text="${#temporals.format(inquiry.createdAt, 'dd MMMM yyyy, HH:mm')}">Date</span>
+            </p>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteInquiryModal">
+                <i class="bi bi-trash me-1"></i> Delete Inquiry
+            </button>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Left Column: Inquiry Information -->
+        <div class="col-lg-8">
+            <div class="glass-panel p-4 mb-4">
+                <h2 class="h5 text-white mb-3 border-bottom border-secondary pb-2">
+                    <i class="bi bi-briefcase-fill text-info me-2"></i> Role &amp; Project Requirements
+                </h2>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <small class="text-muted d-block">Target Role / Project Title</small>
+                        <span class="fs-6 text-white fw-semibold" th:text="${inquiry.jobRole}">Java Backend Dev</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <small class="text-muted d-block">Engagement Type</small>
+                        <span class="badge bg-dark border border-secondary text-light fs-6" th:text="${inquiry.hiringTypeDisplayName}">Full-Time Job</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <small class="text-muted d-block">Budget / Salary Expectation</small>
+                        <span class="text-white" th:text="${inquiry.salaryBudget != null ? inquiry.salaryBudget : 'Not specified / Negotiable'}">Negotiable</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <small class="text-muted d-block">Last Updated</small>
+                        <span class="text-secondary small" th:text="${#temporals.format(inquiry.updatedAt, 'dd MMM yyyy, HH:mm')}">Date</span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h3 class="h6 text-white mb-2">Job Description &amp; Scope:</h3>
+                    <div class="p-3 rounded bg-dark border border-secondary text-light" style="white-space: pre-wrap; font-family: var(--font-body);"
+                         th:text="${inquiry.jobDescription}">Detailed description here...</div>
+                </div>
+
+                <div th:if="${inquiry.additionalMessage}">
+                    <h3 class="h6 text-white mb-2">Additional Message / Remarks:</h3>
+                    <div class="p-3 rounded bg-dark border border-secondary text-secondary" style="white-space: pre-wrap;"
+                         th:text="${inquiry.additionalMessage}">Additional message here...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Recruiter Profile & Status Management -->
+        <div class="col-lg-4">
+            <!-- Recruiter Card -->
+            <div class="glass-panel p-4 mb-4">
+                <h2 class="h5 text-white mb-3 border-bottom border-secondary pb-2">
+                    <i class="bi bi-person-badge-fill text-info me-2"></i> Recruiter Profile
+                </h2>
+
+                <div class="mb-3">
+                    <small class="text-muted d-block">Full Name</small>
+                    <div class="text-white fw-semibold" th:text="${inquiry.fullName}">Recruiter Name</div>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-muted d-block">Company</small>
+                    <div class="text-info fw-semibold" th:text="${inquiry.companyName}">Company Name</div>
+                </div>
+
+                <div class="mb-3">
+                    <small class="text-muted d-block">Work Email</small>
+                    <a th:href="'mailto:' + ${inquiry.workEmail}" class="text-decoration-none text-info d-flex align-items-center gap-1">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span th:text="${inquiry.workEmail}">email@domain.com</span>
+                    </a>
+                </div>
+
+                <div class="mb-2" th:if="${inquiry.contactNumber}">
+                    <small class="text-muted d-block">Contact Phone</small>
+                    <a th:href="'tel:' + ${inquiry.contactNumber}" class="text-decoration-none text-light d-flex align-items-center gap-1">
+                        <i class="bi bi-telephone-fill text-warning"></i>
+                        <span th:text="${inquiry.contactNumber}">+1234567890</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Status Workflow Card -->
+            <div class="glass-panel p-4">
+                <h2 class="h5 text-white mb-3 border-bottom border-secondary pb-2">
+                    <i class="bi bi-arrow-repeat text-warning me-2"></i> Pipeline Status
+                </h2>
+
+                <form th:action="@{/admin/inquiries/{id}/status(id=${inquiry.id})}" method="post">
+                    <div class="mb-3">
+                        <label for="statusSelect" class="form-label small">Update Inquiry Status</label>
+                        <select id="statusSelect" name="status" class="form-select form-select-custom">
+                            <option th:each="st : ${allStatuses}"
+                                    th:value="${st}"
+                                    th:text="${st.displayName}"
+                                    th:selected="${inquiry.status == st}">Status</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-gradient w-100 py-2">
+                        <i class="bi bi-check2-circle me-1"></i> Save Status Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Delete -->
+    <div class="modal fade" id="deleteInquiryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title h6 text-danger">
+                        <i class="bi bi-exclamation-triangle-fill me-1"></i> Delete Hiring Inquiry
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <p class="mb-2">Are you sure you want to delete inquiry <strong th:text="'#' + ${inquiry.id}">#1</strong>?</p>
+                    <p class="small text-muted mb-0">This operation is irreversible and will remove all submitted recruiter data.</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form th:action="@{/admin/inquiries/{id}/delete(id=${inquiry.id})}" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">Yes, Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="mt-auto py-3 bg-dark bg-opacity-75 border-top border-secondary text-center">
+    <small class="text-muted">&copy; <span th:text="${#temporals.year(#temporals.createNow())}">2026</span> Vikash Pandey Portfolio Admin Panel</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

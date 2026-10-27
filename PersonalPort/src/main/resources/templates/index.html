@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Vikash Pandey | Java Developer & Spring Boot Specialist')}"></head>
+<body>
+
+<!-- Navigation Bar -->
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+
+<main>
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <div class="mb-3">
+                        <span class="section-tag">
+                            <i class="bi bi-code-slash me-1"></i> Java & Backend Specialist
+                        </span>
+                    </div>
+                    <p class="text-secondary fs-5 mb-1">Hello, I'm</p>
+                    <h1 class="display-3 fw-extrabold mb-2">
+                        Vikash <span class="gradient-text">Pandey</span>
+                    </h1>
+                    <h2 class="fs-4 text-light fw-medium mb-3">
+                        Java Developer | Spring Boot Developer
+                    </h2>
+                    <h3 class="fs-5 text-info fw-semibold mb-3">
+                        "Building Reliable Backend Applications with Java and Spring Boot."
+                    </h3>
+                    <p class="text-secondary fs-6 mb-4 pe-lg-4" style="max-width: 600px;">
+                        I am a Java Developer focused on backend development, REST APIs, database integration, and building practical software solutions. I enjoy learning new technologies and improving my programming skills through real-world projects.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start mb-4">
+                        <a href="#projects" class="btn btn-primary-gradient">
+                            <i class="bi bi-collection-fill"></i> View My Projects
+                        </a>
+                        <a href="#resume" class="btn btn-outline-custom">
+                            <i class="bi bi-file-earmark-pdf"></i> Download Resume
+                        </a>
+                        <a href="#hire-me" class="btn btn-outline-custom">
+                            <i class="bi bi-send-fill"></i> Hire Me
+                        </a>
+                    </div>
+
+                    <!-- Social Profiles -->
+                    <div class="d-flex align-items-center gap-3 justify-content-center justify-content-lg-start pt-2">
+                        <span class="text-muted small">Connect with me:</span>
+                        <div class="social-links">
+                            <a href="https://github.com/vikashpandey770" target="_blank" rel="noopener noreferrer"
+                               class="social-btn" title="GitHub Profile: vikashpandey770">
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/vikash-p-2532aa258/" target="_blank" rel="noopener noreferrer"
+                               class="social-btn" title="LinkedIn Profile: vikash-p-2532aa258">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-avatar-box">
+                        <div class="avatar-circle">
+                            <span class="avatar-initials">VP</span>
+                            <span class="avatar-badge-tech">Java &bull; Spring Boot</span>
+                        </div>
+
+                        <!-- Floating Tech Badges -->
+                        <div class="floating-pill floating-pill-1">
+                            <i class="bi bi-check-circle-fill text-info"></i>
+                            <span>REST APIs &amp; Microservices</span>
+                        </div>
+                        <div class="floating-pill floating-pill-2">
+                            <i class="bi bi-database-fill text-warning"></i>
+                            <span>MySQL &amp; Spring Data JPA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         ABOUT ME SECTION
+         ========================================== -->
+    <section id="about" class="section-py" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Background &amp; Expertise</h2>
+                <p class="section-subtitle">A dedicated backend engineer building scalable, secure, and maintainable services.</p>
+            </div>
+
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-7">
+                    <div class="glass-panel p-4 p-md-5">
+                        <h3 class="h4 mb-3 text-white">Hi, I'm Vikash Pandey</h3>
+                        <p class="text-secondary fs-6 mb-3">
+                            I am a Java Developer with an MCA degree and practical experience in Java development and backend application development. I work with Java, Spring Boot, REST APIs, Hibernate, Spring Data JPA, and MySQL. I enjoy building useful applications, understanding backend architecture, and continuously improving my programming and problem-solving skills.
+                        </p>
+                        <p class="text-secondary fs-6 mb-0">
+                            My development philosophy revolves around writing clean, readable code, ensuring robust database schemas, designing well-structured REST endpoints, and adopting modern testing practices to ensure production reliability.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="highlight-card">
+                                <i class="bi bi-mortarboard-fill highlight-icon"></i>
+                                <h4 class="h6 text-white mb-1">MCA Graduate</h4>
+                                <small class="text-muted">Master of Computer Applications (2025)</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="highlight-card">
+                                <i class="bi bi-laptop highlight-icon"></i>
+                                <h4 class="h6 text-white mb-1">Internship &amp; Training</h4>
+                                <small class="text-muted">Java &amp; backend development focus</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="highlight-card">
+                                <i class="bi bi-hdd-network highlight-icon"></i>
+                                <h4 class="h6 text-white mb-1">REST APIs</h4>
+                                <small class="text-muted">Clean architecture &amp; documentation</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="highlight-card">
+                                <i class="bi bi-database-check highlight-icon"></i>
+                                <h4 class="h6 text-white mb-1">Database Integration</h4>
+                                <small class="text-muted">MySQL, Hibernate &amp; JPA</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         TECHNICAL SKILLS SECTION
+         ========================================== -->
+    <section id="skills" class="section-py">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Technical Competencies</span>
+                <h2 class="section-title">Skills &amp; Technologies</h2>
+                <p class="section-subtitle">Core programming languages, backend frameworks, relational databases, and tooling.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Programming -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-category-card">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <i class="bi bi-code-square text-info fs-4"></i>
+                            <h3 class="h5 mb-0 text-white">Programming</h3>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-badge"><i class="bi bi-cup-hot-fill text-danger me-1"></i> Java</span>
+                            <span class="skill-badge"><i class="bi bi-diagram-3-fill text-warning me-1"></i> Data Structures</span>
+                            <span class="skill-badge"><i class="bi bi-cpu-fill text-info me-1"></i> Algorithms</span>
+                            <span class="skill-badge"><i class="bi bi-check2-circle text-success me-1"></i> OOP Principles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Development -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-category-card">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <i class="bi bi-server text-primary fs-4"></i>
+                            <h3 class="h5 mb-0 text-white">Backend</h3>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-badge"><i class="bi bi-bootstrap-fill text-success me-1"></i> Spring Boot</span>
+                            <span class="skill-badge"><i class="bi bi-signpost-2 text-info me-1"></i> Spring MVC</span>
+                            <span class="skill-badge"><i class="bi bi-shield-lock text-warning me-1"></i> Spring Security</span>
+                            <span class="skill-badge"><i class="bi bi-arrow-left-right text-primary me-1"></i> REST APIs</span>
+                            <span class="skill-badge"><i class="bi bi-layers text-info me-1"></i> Hibernate</span>
+                            <span class="skill-badge"><i class="bi bi-database text-success me-1"></i> Spring Data JPA</span>
+                            <span class="skill-badge"><i class="bi bi-link-45deg text-secondary me-1"></i> JDBC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-category-card">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <i class="bi bi-database-fill-gear text-warning fs-4"></i>
+                            <h3 class="h5 mb-0 text-white">Database</h3>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-badge"><i class="bi bi-server text-info me-1"></i> MySQL 8</span>
+                            <span class="skill-badge"><i class="bi bi-terminal-fill text-warning me-1"></i> SQL Queries</span>
+                            <span class="skill-badge"><i class="bi bi-table text-primary me-1"></i> Schema Design</span>
+                            <span class="skill-badge"><i class="bi bi-key text-success me-1"></i> Indexing &amp; Joins</span>
+                            <span class="skill-badge"><i class="bi bi-arrow-repeat text-info me-1"></i> Transactions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-category-card">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <i class="bi bi-tools text-secondary fs-4"></i>
+                            <h3 class="h5 mb-0 text-white">Tools &amp; IDEs</h3>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-badge"><i class="bi bi-git text-danger me-1"></i> Git</span>
+                            <span class="skill-badge"><i class="bi bi-github text-light me-1"></i> GitHub</span>
+                            <span class="skill-badge"><i class="bi bi-box-seam text-danger me-1"></i> Maven</span>
+                            <span class="skill-badge"><i class="bi bi-send text-warning me-1"></i> Postman</span>
+                            <span class="skill-badge"><i class="bi bi-code text-info me-1"></i> IntelliJ IDEA</span>
+                            <span class="skill-badge"><i class="bi bi-sun text-purple me-1"></i> Eclipse / STS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         PROJECTS SECTION
+         ========================================== -->
+    <section id="projects" class="section-py" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Featured Works</span>
+                <h2 class="section-title">Projects Showcase</h2>
+                <p class="section-subtitle">Real-world applications showcasing API architecture, security, database integration, and microservices.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Project 1: CodeSathi AI -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary bg-opacity-25 text-info">AI &amp; Backend</span>
+                                <i class="bi bi-robot fs-4 text-info"></i>
+                            </div>
+                            <h3 class="h5 text-white mb-2">CodeSathi AI</h3>
+                            <p class="text-secondary small mb-3">
+                                An AI-powered Java code explanation application that helps users understand Java code and programming concepts.
+                            </p>
+                            <h6 class="text-muted small fw-bold text-uppercase mb-2">Key Features:</h6>
+                            <ul class="text-secondary small ps-3 mb-4">
+                                <li>Interactive Java code explanation and analysis</li>
+                                <li>Real-time prompt processing with external AI APIs</li>
+                                <li>RESTful API design with structured response models</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">REST API</span>
+                                <span class="tech-tag">AI API Integration</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/vikashpandey770" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-custom w-100">
+                                    <i class="bi bi-github me-1"></i> View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Weather Application -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary bg-opacity-25 text-info">API Integration</span>
+                                <i class="bi bi-cloud-sun fs-4 text-warning"></i>
+                            </div>
+                            <h3 class="h5 text-white mb-2">Weather Application</h3>
+                            <p class="text-secondary small mb-3">
+                                A Java backend application that retrieves live weather information using an external weather API and location search functionality.
+                            </p>
+                            <h6 class="text-muted small fw-bold text-uppercase mb-2">Key Features:</h6>
+                            <ul class="text-secondary small ps-3 mb-4">
+                                <li>Real-time weather retrieval by city/coordinates</li>
+                                <li>Third-party REST API integration &amp; JSON serialization</li>
+                                <li>Graceful fallback handling for non-responsive endpoints</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">REST APIs</span>
+                                <span class="tech-tag">External API</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/vikashpandey770" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-custom w-100">
+                                    <i class="bi bi-github me-1"></i> View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Employee Management System -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary bg-opacity-25 text-info">CRUD &amp; Database</span>
+                                <i class="bi bi-people-fill fs-4 text-success"></i>
+                            </div>
+                            <h3 class="h5 text-white mb-2">Employee Management System</h3>
+                            <p class="text-secondary small mb-3">
+                                A robust CRUD application for managing organizational employee records, departments, and payroll details.
+                            </p>
+                            <h6 class="text-muted small fw-bold text-uppercase mb-2">Key Features:</h6>
+                            <ul class="text-secondary small ps-3 mb-4">
+                                <li>Full Create, Read, Update, Delete lifecycle</li>
+                                <li>Spring Data JPA repository with custom queries</li>
+                                <li>Data validation and relational MySQL integrity</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Spring Data JPA</span>
+                                <span class="tech-tag">Hibernate</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/vikashpandey770" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-custom w-100">
+                                    <i class="bi bi-github me-1"></i> View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Microservices Practice Project -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="project-card">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary bg-opacity-25 text-info">Distributed Architecture</span>
+                                <i class="bi bi-diagram-2 fs-4 text-purple"></i>
+                            </div>
+                            <h3 class="h5 text-white mb-2">Microservices Practice Project</h3>
+                            <p class="text-secondary small mb-3">
+                                A distributed learning project involving independent microservices, dynamic service discovery, and inter-service communication.
+                            </p>
+                            <h6 class="text-muted small fw-bold text-uppercase mb-2">Key Features:</h6>
+                            <ul class="text-secondary small ps-3 mb-4">
+                                <li>Decoupled services registered with Netflix Eureka Discovery</li>
+                                <li>Synchronous REST-based inter-service communication</li>
+                                <li>Individual MySQL databases per domain boundary</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Eureka</span>
+                                <span class="tech-tag">REST APIs</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/vikashpandey770" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-custom w-100">
+                                    <i class="bi bi-github me-1"></i> View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: JWT Authentication System -->
+                <div class="col-lg-6 col-md-6">
+                    <div class="project-card">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary bg-opacity-25 text-info">Security &amp; Tokens</span>
+                                <i class="bi bi-shield-lock-fill fs-4 text-info"></i>
+                            </div>
+                            <h3 class="h5 text-white mb-2">JWT Authentication System</h3>
+                            <p class="text-secondary small mb-3">
+                                A secure backend authentication system featuring password hashing, JSON Web Tokens (JWT), registration, login, and protected endpoints.
+                            </p>
+                            <h6 class="text-muted small fw-bold text-uppercase mb-2">Key Features:</h6>
+                            <ul class="text-secondary small ps-3 mb-4">
+                                <li>Stateless token authentication filter chain with Spring Security</li>
+                                <li>BCrypt password encryption and robust user credentials storage</li>
+                                <li>Role-based endpoint authorization &amp; token expiration</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">Spring Security</span>
+                                <span class="tech-tag">JWT</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/vikashpandey770" target="_blank" rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-custom w-100">
+                                    <i class="bi bi-github me-1"></i> View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         EDUCATION & EXPERIENCE
+         ========================================== -->
+    <section id="education" class="section-py">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Academic &amp; Training</span>
+                <h2 class="section-title">Education &amp; Experience</h2>
+                <p class="section-subtitle">Academic qualifications and hands-on professional Java training milestones.</p>
+            </div>
+
+            <div class="row g-5">
+                <!-- Education Timeline -->
+                <div class="col-lg-6">
+                    <h3 class="h4 text-white mb-4 d-flex align-items-center gap-2">
+                        <i class="bi bi-mortarboard text-info"></i> Education
+                    </h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="badge bg-secondary bg-opacity-50 text-white mb-2">Graduating 2025</span>
+                            <h4 class="h5 text-white mb-1">Master of Computer Applications (MCA)</h4>
+                            <p class="text-muted small mb-2">Postgraduate Degree</p>
+                            <p class="text-secondary small">
+                                Focus on Advanced Software Engineering, Database Systems, Object-Oriented Analysis &amp; Design, and Enterprise Application Development.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <span class="badge bg-secondary bg-opacity-50 text-white mb-2">Graduated 2023</span>
+                            <h4 class="h5 text-white mb-1">Bachelor's Degree</h4>
+                            <p class="text-info small mb-2">Gujarat University</p>
+                            <p class="text-secondary small">
+                                Foundation in computer science principles, programming fundamentals, algorithms, relational database management, and data structures.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item mb-0">
+                            <div class="timeline-dot"></div>
+                            <span class="badge bg-secondary bg-opacity-50 text-white mb-2">Completed 2020</span>
+                            <h4 class="h5 text-white mb-1">Higher Secondary Education</h4>
+                            <p class="text-info small mb-2">Gujarat Board</p>
+                            <p class="text-secondary small">
+                                Completed higher secondary school curriculum with a strong focus on mathematics and analytical reasoning.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience & Training -->
+                <div class="col-lg-6">
+                    <h3 class="h4 text-white mb-4 d-flex align-items-center gap-2">
+                        <i class="bi bi-briefcase text-warning"></i> Practical Experience &amp; Training
+                    </h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot" style="background-color: var(--accent-purple); box-shadow: 0 0 10px rgba(157, 78, 221, 0.6);"></div>
+                            <span class="badge bg-secondary bg-opacity-50 text-white mb-2">Training &amp; Practical Application</span>
+                            <h4 class="h5 text-white mb-1">Java Development Internship &amp; Training</h4>
+                            <p class="text-info small mb-2">Backend Software Engineering</p>
+                            <p class="text-secondary small">
+                                Hands-on practical development covering:
+                            </p>
+                            <ul class="text-secondary small ps-3">
+                                <li>Building robust backend services with Java 17 and Spring Boot.</li>
+                                <li>Designing and testing RESTful APIs for client integration.</li>
+                                <li>Database modeling, migrations, and JPA query optimization in MySQL.</li>
+                                <li>Implementing Spring Security authentication and authorization patterns.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         RESUME SECTION
+         ========================================== -->
+    <section id="resume" class="section-py" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Curriculum Vitae</span>
+                <h2 class="section-title">Resume &amp; Qualifications</h2>
+                <p class="section-subtitle">Review my background, credentials, and detailed technical competencies.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-panel p-4 p-md-5 text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-file-earmark-person-fill display-3 gradient-text"></i>
+                        </div>
+                        <h3 class="h4 text-white mb-2">Vikash Pandey - Resume</h3>
+                        <p class="text-secondary mb-4">
+                            Download or inspect my verified resume summarizing my academic background, technical skills, and project portfolio.
+                        </p>
+
+                        <!-- Dynamic Display based on whether PDF exists -->
+                        <div th:if="${resumeExists}">
+                            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                <a th:href="${resumeUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary-gradient">
+                                    <i class="bi bi-eye-fill"></i> View Resume
+                                </a>
+                                <a th:href="${resumeUrl}" download="Vikash-Pandey-Resume.pdf" class="btn btn-outline-custom">
+                                    <i class="bi bi-download"></i> Download Resume
+                                </a>
+                            </div>
+                        </div>
+
+                        <div th:unless="${resumeExists}" class="text-start">
+                            <div class="alert alert-info border-0 p-4" style="background: rgba(0, 210, 255, 0.08); border-left: 4px solid var(--accent-blue) !important;">
+                                <div class="d-flex align-items-start gap-3">
+                                    <i class="bi bi-info-circle-fill fs-3 text-info mt-1"></i>
+                                    <div>
+                                        <h4 class="h6 text-white mb-1">Resume File Placement Note</h4>
+                                        <p class="text-secondary small mb-2">
+                                            The resume file is currently being updated. To make your official resume downloadable and viewable, please place your PDF file at:
+                                        </p>
+                                        <code class="text-info bg-dark px-2 py-1 rounded d-inline-block small mb-2">
+                                            src/main/resources/static/assets/Vikash-Pandey-Resume.pdf
+                                        </code>
+                                        <p class="text-secondary small mb-0">
+                                            Once the file is placed in this location, the View and Download buttons will activate automatically without any code changes.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         HIRE ME SECTION (Form)
+         ========================================== -->
+    <section id="hire-me" class="section-py">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Opportunity Inquiry</span>
+                <h2 class="section-title">Hire Me</h2>
+                <p class="section-subtitle">Interested in discussing a software engineering role, internship, or freelance project? Send an inquiry directly below.</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="glass-panel p-4 p-md-5">
+
+                        <!-- Submission Alert Banner -->
+                        <div id="formAlert" class="alert d-none mb-4" role="alert">
+                            <div class="d-flex align-items-center">
+                                <span id="formAlertMessage"></span>
+                            </div>
+                        </div>
+
+                        <form id="hiringInquiryForm" novalidate>
+                            <div class="row g-3">
+                                <!-- Full Name -->
+                                <div class="col-md-6">
+                                    <label for="fullName" class="form-label">Full Name <span class="req">*</span></label>
+                                    <input type="text" class="form-control form-control-custom" id="fullName"
+                                           placeholder="e.g. John Doe" maxlength="100" required>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Company Name -->
+                                <div class="col-md-6">
+                                    <label for="companyName" class="form-label">Company / Organization <span class="req">*</span></label>
+                                    <input type="text" class="form-control form-control-custom" id="companyName"
+                                           placeholder="e.g. Acme Corporation" maxlength="150" required>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Work Email -->
+                                <div class="col-md-6">
+                                    <label for="workEmail" class="form-label">Work Email <span class="req">*</span></label>
+                                    <input type="email" class="form-control form-control-custom" id="workEmail"
+                                           placeholder="e.g. recruiter@company.com" maxlength="150" required>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Contact Number -->
+                                <div class="col-md-6">
+                                    <label for="contactNumber" class="form-label">Contact Number <small class="text-muted">(Optional)</small></label>
+                                    <input type="tel" class="form-control form-control-custom" id="contactNumber"
+                                           placeholder="e.g. +1 555-0199" maxlength="25">
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Hiring Type -->
+                                <div class="col-md-6">
+                                    <label for="hiringType" class="form-label">Hiring Engagement Type <span class="req">*</span></label>
+                                    <select class="form-select form-select-custom" id="hiringType" required>
+                                        <option value="" disabled selected>Select engagement type...</option>
+                                        <option value="FULL_TIME">Full-Time Job</option>
+                                        <option value="INTERNSHIP">Internship</option>
+                                        <option value="FREELANCE">Freelance Project</option>
+                                        <option value="CONTRACT">Contract</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Job Role or Project Title -->
+                                <div class="col-md-6">
+                                    <label for="jobRole" class="form-label">Job Role or Project Title <span class="req">*</span></label>
+                                    <input type="text" class="form-control form-control-custom" id="jobRole"
+                                           placeholder="e.g. Junior Java Developer / Backend Engineer" maxlength="150" required>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Salary or Budget -->
+                                <div class="col-12">
+                                    <label for="salaryBudget" class="form-label">Salary or Budget Range <small class="text-muted">(Optional)</small></label>
+                                    <input type="text" class="form-control form-control-custom" id="salaryBudget"
+                                           placeholder="e.g. Standard Industry / Negotiable / $60,000 - $80,000" maxlength="100">
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Job Description -->
+                                <div class="col-12">
+                                    <label for="jobDescription" class="form-label">Job or Project Requirements <span class="req">*</span></label>
+                                    <textarea class="form-control form-control-custom" id="jobDescription" rows="4"
+                                              placeholder="Provide details about the role responsibilities, tech stack expectations, or project objectives..."
+                                              maxlength="3000" required></textarea>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Additional Message -->
+                                <div class="col-12">
+                                    <label for="additionalMessage" class="form-label">Additional Message <small class="text-muted">(Optional)</small></label>
+                                    <textarea class="form-control form-control-custom" id="additionalMessage" rows="2"
+                                              placeholder="Any additional remarks, schedule preferences, or interview timeline..."
+                                              maxlength="2000"></textarea>
+                                    <div class="invalid-feedback-custom"></div>
+                                </div>
+
+                                <!-- Consent Checkbox -->
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="consent" required>
+                                        <label class="form-check-label text-secondary small" for="consent">
+                                            I consent to submitting this hiring inquiry and authorize Vikash Pandey to contact me regarding this opportunity. <span class="req">*</span>
+                                        </label>
+                                        <div class="invalid-feedback-custom"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12 mt-4 text-center text-md-start">
+                                    <button type="submit" id="submitInquiryBtn" class="btn btn-primary-gradient px-4 py-2">
+                                        <span id="submitBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                        <span id="submitBtnText"><i class="bi bi-send-fill me-1"></i> Submit Hiring Inquiry</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<!-- Hiring Form Handler Script -->
+<script th:src="@{/js/hiring-form.js}"></script>
+
+</body>
+</html>
